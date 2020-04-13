@@ -10,5 +10,9 @@ export const API = {
     async getTodoLists() {
         let response = await instance.get('')
         return response.data
-    }
+    },
+    async deleteTodoList(todoListId) {
+        let response = await instance.delete(todoListId)
+        return response.data
+    },
 }

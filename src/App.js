@@ -13,11 +13,13 @@ const App = (props) => {
 
     return (
         <div className="App">
-            <div className='addTodoListFormWrap'>
-                <AddNewItemForm btnValue='Add TodoList' placeholderValue="New todoList name..."/>
-            </div>
-            <div className="todoLists">
-                {props.todoLists.map(tl => <TodoList key={tl.id} title={tl.title}/>)}
+            <div className="container">
+                <div className='addTodoListFormWrap'>
+                    <AddNewItemForm btnValue='Add TodoList' placeholderValue="New todoList name..."/>
+                </div>
+                <div className="todoLists">
+                    {props.todoLists.map(tl => <TodoList key={tl.id} title={tl.title} id={tl.id}/>)}
+                </div>
             </div>
         </div>
     );
