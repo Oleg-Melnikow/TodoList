@@ -1,0 +1,31 @@
+.wrap{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #777;
+    border-radius: 5px;
+}
+
+.wrap:hover{
+    background: rgba(155, 155, 155, 0.05);
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+}
+
+.title h3{
+    margin: 0;
+}
+
+.title i{
+    color: #777777;
+}
+
+.title i:hover{
+    color: red;
+}

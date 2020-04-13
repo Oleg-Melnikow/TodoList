@@ -15,3 +15,11 @@
   height: 70px;
   margin: 20px calc(50% - 200px);
 }
+
+.todoLists{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
