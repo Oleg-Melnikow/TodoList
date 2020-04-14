@@ -15,4 +15,8 @@ export const API = {
         let response = await instance.delete(todoListId)
         return response.data
     },
+    async createTodoList(title) {
+        let response = await instance.post('', { title })
+        return response.data.data.item
+    }
 }
