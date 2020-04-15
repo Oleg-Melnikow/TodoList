@@ -1,7 +1,8 @@
 import React from "react";
 import style from "./TodoList.module.css"
 import {connect} from "react-redux";
-import {deleteTodoList} from "../../redux/reducer";
+import {changeTodoList, deleteTodoList} from "../../redux/reducer";
+import TodoListTitle from "../TodoListTitle/TodoListTitle";
 
 const TodoList = (props) => {
 
@@ -11,7 +12,7 @@ const TodoList = (props) => {
 
     return(<div className={style.wrap}>
             <div className={style.title}>
-                <h3>{props.title}</h3>
+                <TodoListTitle title={props.title} changeTodoList={props.changeTodoList} id={props.id}/>
                 <i className="fas fa-trash-alt" onClick={deleted}/>
             </div>
 
@@ -20,4 +21,4 @@ const TodoList = (props) => {
     )
 }
 
-export default connect(null, {deleteTodoList})(TodoList)
+export default connect(null, {deleteTodoList, changeTodoList})(TodoList)
