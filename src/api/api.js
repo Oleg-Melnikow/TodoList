@@ -27,5 +27,9 @@ export const API = {
         debugger
         let response = await instance.get(`${todoListId}/tasks`)
         return response.data.items
+    },
+    async createTask(todoListId, newText) {
+        let response =  await instance.post(`${todoListId}/tasks`, { title: newText })
+        return response.data.data.item
     }
 }

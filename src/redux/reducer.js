@@ -5,6 +5,7 @@ export const DELETE_TODOLIST = 'TodoList/Reducer/DELETE_TODOLIST'
 export const ADD_TODOLIST = 'TodoList/Reducer/ADD_TODOLIST'
 export const CHANGE_TODOLIST = 'TodoList/Reducer/CHANGE_TODOLIST'
 export const SET_TASKS = 'TodoList/Reducer/SET_TASKS'
+export const ADD_TASK = 'TodoList/Reducer/ADD_TASK'
 
 const initialState = {
     todoLists: []
@@ -39,6 +40,16 @@ export const reducer = (state = initialState, action) => {
                 })
             }
         }
+        case ADD_TASK:
+            return {
+                ...state,
+                todoLists: state.todoLists.map(tl => {
+                    if (tl.id === action.todoListId) {
+                        return { ...tl, tasks: [action.newTask, ...tl.tasks] }
+                    } else return tl
+                })
+            }
+
         default:
             return state
     }
@@ -49,6 +60,7 @@ export const deleteTodoListSuccess = (todoListId) => ({type: DELETE_TODOLIST, to
 export const addTodoListSuccess = (newTodoList) => ({type: ADD_TODOLIST, newTodoList})
 export const changeTodoListSuccess = (todoListId, title) => ({type: CHANGE_TODOLIST, todoListId, title})
 export const loadTasksSuccess = (tasks, todoListId) => ({type: SET_TASKS, tasks, todoListId})
+export const addTaskSuccess = (newTask, todoListId) => ({ type: ADD_TASK, newTask, todoListId })
 
 export const loadTodoLists = () => async (dispatch) => {
     let todoLists = await API.getTodoLists()
@@ -73,4 +85,9 @@ export const changeTodoList = (todoListId, title) => async (dispatch) => {
 export const loadTasks = (todoListId) => async (dispatch) => {
     let tasks = await API.getTasks(todoListId)
     dispatch(loadTasksSuccess(tasks, todoListId))
+}
+
+export const addTask = (newText, todoListId) => async (dispatch) => {
+    let task = await API.createTask(todoListId, newText)
+    dispatch(addTaskSuccess(task, todoListId))
 }
