@@ -1,13 +1,11 @@
 import React from 'react'
+import TodoListTask from "./TodoListTask/TodoListTask";
 
 const TodoListTasks = (props) => {
     debugger
     return (
-        <div className="">
-            {props.tasks.map((task) => <div style={{display: "flex", alignItems: "center"}} key={task.id}>
-                <input type="checkbox" checked={task.status}/>
-                    <span style={{color: "white"}}>{task.title}</span>
-            </div>)}
+        <div>
+            {props.tasks.map((task) => <TodoListTask key={task.id} task={task} todoListId={props.todoListId}/>)}
         </div>
     )
 }
