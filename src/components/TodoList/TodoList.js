@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {changeTodoList, deleteTodoList, loadTasks} from "../../redux/reducer";
 import TodoListTitle from "../TodoListTitle/TodoListTitle";
 import TodoListTasks from "../TodoListTasks";
+import AddNewItemForm from "../AddNewItemForm/AddNewItemForm";
 
 const TodoList = (props) => {
     useEffect(() => {
@@ -18,6 +19,11 @@ const TodoList = (props) => {
             <div className={style.title}>
                 <TodoListTitle title={props.title} changeTodoList={props.changeTodoList} id={props.id}/>
                 <i className="fas fa-trash-alt" onClick={deleted}/>
+            </div>
+            <div className={style.AddTaskFormWrap}>
+                <AddNewItemForm addElement={""}
+                                btnValue='Add Task'
+                                placeholderValue="New task name..." />
             </div>
             <TodoListTasks todoListId={props.id} tasks={props.tasks}/>
         </div>
