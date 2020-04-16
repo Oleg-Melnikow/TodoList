@@ -19,7 +19,7 @@ const App = (props) => {
                                     addElement={props.addTodoList}/>
                 </div>
                 <div className="todoLists">
-                    {props.todoLists.map(tl => <TodoList key={tl.id} title={tl.title} id={tl.id}/>)}
+                    {props.todoLists.map(tl => <TodoList key={tl.id} title={tl.title} id={tl.id} tasks={tl.tasks}/>)}
                 </div>
             </div>
         </div>

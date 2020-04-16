@@ -22,5 +22,10 @@ export const API = {
     async updateTodoList(todoListId, newText) {
         let response = await instance.put(todoListId, {title: newText})
         return response.data
+    },
+    async getTasks(todoListId) {
+        debugger
+        let response = await instance.get(`${todoListId}/tasks`)
+        return response.data.items
     }
 }
