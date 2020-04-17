@@ -13,14 +13,25 @@ const TodoListTask = (props) => {
     }
     const deactivateEditMode = () => {
         setEditMode(false)
+        props.changeTitle(props.task.id, title)
+    }
+
+    const onChangeTitle = (e) => {
+        setTitle(e.currentTarget.value)
+    }
+
+    const onChangeStatus = () => {
+        let status = props.task.status ? 0 : 2
+        props.changeStatus(props.task.id, status)
     }
 
     return (
         <div className={style.todoListTask}>
             <input type="checkbox" id="task" checked={props.task.status}/>
-            <label form="task"/>
+            <label form="task" onClick={onChangeStatus}/>
             {editMode
-                ? <input className={s.inputChange} autoFocus={true} onBlur={deactivateEditMode} value={title}/>
+                ? <input className={s.inputChange} autoFocus={true}
+                         onBlur={deactivateEditMode} value={title} onChange={onChangeTitle}/>
                 : <span onClick={activateEditMode}>{props.task.title}</span>
             }
         </div>
