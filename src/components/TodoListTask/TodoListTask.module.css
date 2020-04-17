@@ -1,5 +1,11 @@
 .todoListTask{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task{
+    display: flex;
     align-items: center;
 }
 

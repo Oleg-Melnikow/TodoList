@@ -7,6 +7,7 @@ export const CHANGE_TODOLIST = 'TodoList/Reducer/CHANGE_TODOLIST'
 export const SET_TASKS = 'TodoList/Reducer/SET_TASKS'
 export const ADD_TASK = 'TodoList/Reducer/ADD_TASK'
 export const CHANGE_TASK = 'TodoList/Reducer/CHANGE_TASK'
+export const DELETE_TASK = 'TodoList/Reducer/DELETE_TASK'
 
 const initialState = {
     todoLists: []
@@ -31,7 +32,6 @@ export const reducer = (state = initialState, action) => {
             }
         }
         case SET_TASKS: {
-            debugger
             return {
                 ...state,
                 todoLists: state.todoLists.map(tl => {
@@ -67,7 +67,18 @@ export const reducer = (state = initialState, action) => {
                 })
             }
         }
-
+        case DELETE_TASK:
+            return {
+                ...state,
+                todoLists: state.todoLists.map(tl => {
+                    if (tl.id === action.todoListId) {
+                        return {
+                            ...tl,
+                            tasks: tl.tasks.filter(task => task.id !== action.taskId)
+                        }
+                    } else return tl
+                })
+            }
         default:
             return state
     }
@@ -80,6 +91,7 @@ export const changeTodoListSuccess = (todoListId, title) => ({type: CHANGE_TODOL
 export const loadTasksSuccess = (tasks, todoListId) => ({type: SET_TASKS, tasks, todoListId})
 export const addTaskSuccess = (newTask, todoListId) => ({type: ADD_TASK, newTask, todoListId})
 export const changeTaskSuccess = (todoListId, taskId, obj) => ({type: CHANGE_TASK, todoListId, taskId, obj})
+export const deleteTaskSuccess = (taskId, todoListId) => ({ type: DELETE_TASK, taskId, todoListId })
 
 export const loadTodoLists = () => async (dispatch) => {
     let todoLists = await API.getTodoLists()
@@ -114,5 +126,10 @@ export const addTask = (newText, todoListId) => async (dispatch) => {
 export const changeTask = (todoListId, taskId, obj) => async (dispatch) => {
     await API.updateTask(obj)
     dispatch(changeTaskSuccess(todoListId, taskId, obj))
+}
+
+export const deleteTask = (taskId, todoListId) => async (dispatch) => {
+    await API.deleteTask(taskId)
+    dispatch(deleteTaskSuccess(taskId, todoListId))
 }
 

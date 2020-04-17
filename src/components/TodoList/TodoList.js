@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
 import style from "./TodoList.module.css"
 import {connect} from "react-redux";
-import {addTask, changeTask, changeTodoList, deleteTodoList, loadTasks} from "../../redux/reducer";
+import {addTask, changeTask, changeTodoList, deleteTask, deleteTodoList, loadTasks} from "../../redux/reducer";
 import TodoListTitle from "../TodoListTitle/TodoListTitle";
 import TodoListTasks from "../TodoListTasks";
 import AddNewItemForm from "../AddNewItemForm/AddNewItemForm";
+import ButtonDelete from "../ButtonDelete";
 
 const TodoList = (props) => {
     useEffect(() => {
@@ -39,7 +40,7 @@ const TodoList = (props) => {
         <div className={style.wrap}>
             <div className={style.title}>
                 <TodoListTitle title={props.title} changeTodoList={props.changeTodoList} id={props.id}/>
-                <i className="fas fa-trash-alt" onClick={deleted}/>
+                <ButtonDelete deleted={deleted}/>
             </div>
             <div className={style.AddTaskFormWrap}>
                 <AddNewItemForm addElement={onAddTaskClick}
@@ -47,10 +48,10 @@ const TodoList = (props) => {
                                 placeholderValue="New task name..."/>
             </div>
             <TodoListTasks todoListId={props.id} tasks={tasks}
-                           changeTitle={changeTitle} changeStatus={changeStatus}/>
+                           changeTitle={changeTitle} changeStatus={changeStatus} deleteTask={props.deleteTask}/>
         </div>
     )
 }
 
 export default connect(null,
-    {deleteTodoList, changeTodoList, loadTasks, addTask, changeTask})(TodoList)
+    {deleteTodoList, changeTodoList, loadTasks, addTask, changeTask, deleteTask})(TodoList)

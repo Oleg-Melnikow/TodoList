@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import style from "./TodoListTask.module.css"
 import s from "../TodoListTitle/TodoListTitle.module.css"
+import ButtonDelete from "../ButtonDelete";
 
 
 const TodoListTask = (props) => {
@@ -25,15 +26,23 @@ const TodoListTask = (props) => {
         props.changeStatus(props.task.id, status)
     }
 
+    const deleteTask = () => {
+        debugger
+        props.deleteTask(props.task.id, props.todoListId)
+    }
+
     return (
         <div className={style.todoListTask}>
-            <input type="checkbox" id="task" checked={props.task.status}/>
-            <label form="task" onClick={onChangeStatus}/>
-            {editMode
-                ? <input className={s.inputChange} autoFocus={true}
-                         onBlur={deactivateEditMode} value={title} onChange={onChangeTitle}/>
-                : <span onClick={activateEditMode}>{props.task.title}</span>
-            }
+            <div className={style.task}>
+                <input type="checkbox" id="task" checked={props.task.status}/>
+                <label form="task" onClick={onChangeStatus}/>
+                {editMode
+                    ? <input className={s.inputChange} autoFocus={true}
+                             onBlur={deactivateEditMode} value={title} onChange={onChangeTitle}/>
+                    : <span onClick={activateEditMode}>{props.task.title}</span>
+                }
+            </div>
+            <ButtonDelete deleted={deleteTask}/>
         </div>
     )
 }

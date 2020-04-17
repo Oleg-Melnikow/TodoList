@@ -24,7 +24,6 @@ export const API = {
         return response.data
     },
     async getTasks(todoListId) {
-        debugger
         let response = await instance.get(`${todoListId}/tasks`)
         return response.data.items
     },
@@ -35,5 +34,8 @@ export const API = {
     async updateTask(newTask) {
         let response = await instance.put('tasks', newTask)
         return response.data
+    },
+    deleteTask(taskId) {
+        return instance.delete(`tasks/${taskId}`)
     }
 }

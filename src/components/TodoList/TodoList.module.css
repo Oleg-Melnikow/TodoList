@@ -1,4 +1,4 @@
-.wrap{
+.wrap {
     width: 250px;
     min-height: 250px;
     margin: 10px;
@@ -7,12 +7,11 @@
     border-radius: 5px;
 }
 
-.wrap:hover{
+.wrap:hover {
     background: rgba(155, 155, 155, 0.05);
 }
 
-
-.title{
+.title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,15 +19,15 @@
     margin: 5px;
 }
 
-.title h3{
+.title h3 {
     margin: 0;
 }
 
-.title i{
+i {
     color: #777777;
 }
 
-.title i:hover{
+i:hover {
     color: red;
 }
 
